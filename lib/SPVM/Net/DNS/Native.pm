@@ -15,6 +15,16 @@ Net::DNS::Native class in L<SPVM> has methods to perform non-blocking L<getaddri
 =head1 Usage
 
   use Net::DNS::Native;
+  
+  my $dns = Net::DNS::Native->new;
+  
+  my $domain = "google.com";
+  my $service = (string)undef;
+  my $hints = Sys::Socket::Addrinfo->new;
+  $hints->set_ai_family(SOCKET->AF_INET);
+  my $res_ref = new Sys::Socket::AddrinfoLinkedList[1];
+  
+  $dns->getaddrinfo($domain, $service, $hints, $res_ref);
 
 =head1 Class Methods
 
@@ -30,7 +40,7 @@ Performs non-blocking L<getaddrinfo|SPVM::Sys::Socket#getaddrinfo> operation.
 
 Implementation:
 
-Thie methos creates a L<goroutine|SPVM::Go#go">. The goroutine creates a <thread|SPVM::Thread> that performs L<getaddrinfo|SPVM::Sys::Socket#getaddrinfo> operation.
+Thie methos creates a L<goroutine|SPVM::Go/"go">. The goroutine creates a L<thread|SPVM::Thread> that performs L<getaddrinfo|SPVM::Sys::Socket/"getaddrinfo"> operation.
 
 The caller gorouine waits for the goroutine to be finised and transfers the control to the scheduler.
 

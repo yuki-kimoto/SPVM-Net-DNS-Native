@@ -32,7 +32,7 @@ class TestCase::Net::DNS::Native {
       my $dns = Net::DNS::Native->new;
       
       eval { 
-        $dns->getaddrinfo($domain, undef, $hints, $res_ref);
+        $dns->getaddrinfo($domain, $service, $hints, $res_ref);
       }
       
       if ($@ && eval_error_id isa_error Error::System) {
@@ -74,7 +74,7 @@ class TestCase::Net::DNS::Native {
       my $dns = Net::DNS::Native->new;
       
       eval { 
-        $dns->getaddrinfo($domain, undef, $hints, $res_ref);
+        $dns->getaddrinfo($domain, $service, $hints, $res_ref);
       }
       
       if ($@ && eval_error_id isa_error Error::System) {
