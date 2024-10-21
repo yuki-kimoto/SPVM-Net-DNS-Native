@@ -16,7 +16,11 @@ my $api = SPVM::api();
 
 my $start_memory_blocks_count = $api->get_memory_blocks_count;
 
-ok(SPVM::TestCase::Net::DNS::Native->test);
+ok(SPVM::TestCase::Net::DNS::Native->new);
+
+ok(SPVM::TestCase::Net::DNS::Native->getaddrinfo);
+
+ok(SPVM::TestCase::Net::DNS::Native->getaddrinfo_go);
 
 # Version check
 {
